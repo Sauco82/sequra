@@ -252,15 +252,29 @@ $size in $sizes {
 .tabs a {
   text-decoration: none;
   display: inline-block;
-  padding: $spacer-small $spacer-smaller;
+  padding: $spacer-small;
+  color: #333;
+  background-color: #dadada;
+  border-radius: 10% 10% 0 0;
 }
 
 .mock-container {
-  border: 1px solid #333;
+  border: 1px solid #ccc;
   min-height: 30vh;
 }
 
 .mock-image {
   background-color: cornflowerblue;
   min-height: 40vh;
+}
+
+.price {
+  font-size: 50px;
+  font-weight: bold;
+}
+
+.btn {
+  width: 100%;
+  margin: 0 auto;
+  display: block;
 }
