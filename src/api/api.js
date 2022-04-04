@@ -17,6 +17,4 @@ export const api = createApi({
   })
 });
 
-
-
 export const { useGetCreditAgreementQuery, usePostEventsMutation } = api;
