@@ -1,0 +1,266 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+/* UTILS */
+/* ==================================== */
+.container {
+  width: 100%;
+  max-width: 60rem;
+  padding: 1rem;
+  margin: 0 auto;
+}
+
+// Padding and margin
+// ======================================================
+$spacer-smaller: 0.5rem;
+$spacer-small: 1rem;
+$spacer: 1.5rem;
+$spacer-big: 3rem;
+$spacer-bigger: 8rem;
+
+$sizes: (0: 0,
+  1: $spacer-smaller,
+  2: $spacer-small,
+  3: $spacer,
+  4: $spacer-big,
+  5: $spacer-bigger,
+);
+
+$directions: ("": "",
+  "-top": "t",
+  "-bottom": "b",
+  "-left": "l",
+  "-right": "r"
+);
+
+@mixin spacing-utils($type: "margin") {
+
+  @each $direction-key,
+  $direction in $directions {
+
+    @each $size-key,
+    $size in $sizes {
+
+      &#{$direction}-#{$size-key},
+      &#{$direction}_#{$size-key} {
+        #{$type}#{$direction-key}: $size !important
+      }
+    }
+  }
+}
+
+// Generates m-{sizes}, mt-{sizes}, mb-{sizes}, mr-{sizes}, ml-{sizes},
+// to handle margins of all sizes and directions,
+.m {
+  @include spacing-utils("margin");
+}
+
+// Generates p-{sizes}, pt-{sizes}, pb-{sizes}, pr-{sizes}, pl-{sizes},
+// to handle paddings of all sizes and directions,
+.p {
+  @include spacing-utils("padding");
+}
+
+// Grid
+// ======================================================
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: $spacer-small $spacer-small;
+}
+
+@each $size-key,
+$size in $sizes {
+  .column-gap-#{$size-key} {
+    column-gap: $size !important;
+  }
+
+  .row-gap-#{$size-key} {
+    row-gap: $size !important;
+  }
+
+  .gap-#{$size-key} {
+    gap: $size $size !important;
+  }
+}
+
+@for $col-size from 1 through 12 {
+  .g-col-#{$col-size} {
+    grid-column: span #{$col-size};
+  }
+}
+
+.justify-self-start {
+  justify-self: start;
+}
+
+.justify-self-end {
+  justify-self: end;
+}
+
+.justify-self-center {
+  justify-self: center;
+}
+
+.justify-self-stretch {
+  justify-self: stretch;
+}
+
+.align-self-start {
+  align-self: start;
+}
+
+.align-self-end {
+  align-self: end;
+}
+
+.align-self-center {
+  align-self: center;
+}
+
+.align-self-stretch {
+  align-self: stretch;
+}
+
+// flexbox utilities
+// ======================================================
+.flex {
+  display: flex;
+}
+
+.dont_resize {
+  flex: 0 0 auto
+}
+
+.direction-row {
+  flex-direction: row;
+}
+
+.direction-row-reverse {
+  flex-direction: row-reverse;
+}
+
+.direction-column {
+  flex-direction: column;
+}
+
+.direction-column-reverse {
+  flex-direction: column-reverse;
+}
+
+.nowrap {
+  flex-wrap: nowrap;
+}
+
+.wrap {
+  flex-wrap: wrap;
+}
+
+.wrap-reverse {
+  flex-wrap: wrap-reverse;
+}
+
+// Justify content
+.justify-start {
+  justify-content: flex-start
+}
+
+.justify-end {
+  justify-content: flex-end
+}
+
+.justify-center {
+  justify-content: center
+}
+
+.justify-between {
+  justify-content: space-between
+}
+
+.justify-around {
+  justify-content: space-around
+}
+
+.justify-evenly {
+  justify-content: space-evenly
+}
+
+// Align items, self and content
+.align-items-start {
+  align-items: flex-start
+}
+
+.align-items-end {
+  align-items: flex-end
+}
+
+.align-items-center {
+  align-items: center
+}
+
+.align-items-stretch {
+  align-items: stretch
+}
+
+.align-items-baseline {
+  align-items: baseline
+}
+
+.align-content-start {
+  align-content: flex-start
+}
+
+.align-content-end {
+  align-content: flex-end
+}
+
+.align-content-center {
+  align-content: center
+}
+
+.align-content-between {
+  align-content: space-between
+}
+
+.align-content-around {
+  align-content: space-around
+}
+
+.align-content-evenly {
+  align-content: space-evenly
+}
+
+.align-content-stretch {
+  align-content: stretch
+}
+
+// Actual styles
+// ==================
+
+.tabs a {
+  text-decoration: none;
+  display: inline-block;
+  padding: $spacer-small $spacer-smaller;
+}
+
+.mock-container {
+  border: 1px solid #333;
+  min-height: 30vh;
+}
+
+.mock-image {
+  background-color: cornflowerblue;
+  min-height: 40vh;
+}

@@ -1,0 +1,53 @@
+{
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": 13,
+    "sourceType": "module"
+  },
+  "rules": {
+    "indent": [
+      "error",
+      2,
+      {
+        "SwitchCase": 1,
+        "VariableDeclarator": {
+          "var": 2,
+          "let": 2,
+          "const": 3
+        },
+        "MemberExpression": "off"
+      }
+    ],
+    "array-bracket-spacing": [
+      "error",
+      "always",
+      {
+        "singleValue": false,
+        "objectsInArrays": false,
+        "arraysInArrays": false
+      }
+    ],
+    "key-spacing": [
+      "error",
+      {
+        "beforeColon": false,
+        "mode": "minimum",
+        "align": "value"
+      }
+    ],
+    "linebreak-style": [
+      "error",
+      "unix"
+    ],
+    "quotes": [
+      "error",
+      "double"
+    ],
+    "semi": [
+      "error",
+      "always"
+    ]
+  }
+}
