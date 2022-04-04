@@ -4,13 +4,22 @@ import "./index.scss";
 import App from "./App";
 import { store } from "./app/store";
 import { Provider } from "react-redux";
-import * as serviceWorker from "./serviceWorker";
 
-ReactDOM.render(
+const mainAmountElement = document.getElementsByClassName("sequra-main-amount")[0],
+      quantityElement = document.getElementsByClassName("sequra-quantity")[0],
+      mainAmount = parseFloat(mainAmountElement.textContent),
+      quantity = quantityElement.value,
+      amount = mainAmount * quantity;
+
+const renderApp = amount => ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
-      <App amount={100} />
+      <App amount={amount} />
     </Provider>
   </React.StrictMode>,
   document.getElementById("sequra-app")
 );
+
+renderApp(amount);
+
+quantityElement.addEventListener("change", e =>renderApp(e.target.value * mainAmount));
