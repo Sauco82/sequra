@@ -9,7 +9,7 @@ import * as serviceWorker from "./serviceWorker";
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
-      <App />
+      <App amount={100} />
     </Provider>
   </React.StrictMode>,
   document.getElementById("sequra-app")

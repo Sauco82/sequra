@@ -1,12 +1,8 @@
 import React from "react";
 import InstallmentSelector from "./components/InstallmentSelector";
 
-function App() {
-  return (
-    <div className="container">
-      <InstallmentSelector />
-    </div>
-  );
+function App({amount}) {
+  return <InstallmentSelector {...{amount}} />;
 }
 
 export default App;
