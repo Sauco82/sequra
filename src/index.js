@@ -1,5 +1,6 @@
 import React from "react";
-import ReactDOM from "react-dom";
+import { createRoot } from "react-dom/client";
+
 import "./index.scss";
 import App from "./App";
 import { store } from "./app/store";
@@ -11,13 +12,15 @@ const mainAmountElement = document.getElementsByClassName("sequra-main-amount")[
       quantity = quantityElement.value,
       amount = mainAmount * quantity;
 
-const renderApp = amount => ReactDOM.render(
+const container = document.getElementById("sequra-app"),
+      root = createRoot(container);
+
+const renderApp = amount => root.render(
   <React.StrictMode>
     <Provider store={store}>
       <App amount={amount} />
     </Provider>
-  </React.StrictMode>,
-  document.getElementById("sequra-app")
+  </React.StrictMode>
 );
 
 renderApp(amount);

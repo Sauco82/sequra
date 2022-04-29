@@ -1,4 +1,5 @@
-import { render, screen, waitFor, fireEvent } from "./test-utils";
+import { render, screen, waitFor } from "./test-utils";
+import userEvent from "@testing-library/user-event";
 import { rest } from "msw";
 import { setupServer } from "msw/node";
 
@@ -14,6 +15,9 @@ const AMOUNT = 100;
 const handlers = [
   rest.get("http://localhost:8080/credit_agreements?totalWithTax=*", (req, res, ctx)=>{
     return res(ctx.json(installments));
+  }),
+  rest.post("http://localhost:8080/events", (req, res, ctx) => {
+    return res(ctx.json({}));
   })
 ];
 
@@ -25,7 +29,7 @@ describe("Sequra App", () => {
   afterAll(()=>server.close());
 
   it("loads and displays initial data", async ()=>{
-    render(<App amount={AMOUNT}/>);
+    render(<App amount={AMOUNT}/>);    
     
     expect(screen.queryByRole("combobox")).toHaveLength(1);
 
@@ -34,5 +38,16 @@ describe("Sequra App", () => {
     });
 
     expect(screen.queryByRole("combobox")[0]).toHaveValue("3");    
+    expect(screen.queryByRole("option", {name: "3 cuotas de 3,33 €/mes"}).selected).toBe(true);
+  });
+
+  it("allows to change the selected quote", async ()=>{
+    const {debug} = render(<App amount={AMOUNT}/>);    
+    
+    const select = screen.queryByRole("combobox");
+    
+    await waitFor(()=> expect(select).toHaveLength(2) );
+    await userEvent.selectOptions(select, ["6"]);    
+    expect(screen.queryByRole("option", {name: "6 cuotas de 1,66 €/mes"}).selected).toBe(true);
   });
 });
